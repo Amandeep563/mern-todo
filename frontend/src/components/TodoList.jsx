@@ -1,22 +1,44 @@
 const TodoList = ({ todos = [], onDelete, onToggle, onEdit }) => {
   return (
-    <div>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo._id}>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => onToggle(todo._id, !todo.completed)}
-            />
-            <span
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
+    <ul
+      className="nes-container with-title is-centered is-rounded"
+      style={{ padding: "1rem" }}
+    >
+      <p className="title">Todos</p>
+      {todos.map((todo) => (
+        <li
+          key={todo._id}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: "1rem",
+          }}
+        >
+          {/* Checkbox + Title */}
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <label>
+              <input
+                type="checkbox"
+                className="nes-checkbox is-dark"
+                id={`checkbox-${todo._id}`}
+                checked={todo.completed}
+                onChange={() => onToggle(todo._id, !todo.completed)}
+              />
+              <span
+                style={{ marginLeft: "1.2rem" }}
+                className="nes-text is-white"
+              >
+                {todo.title}
+              </span>
+            </label>
+          </div>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button
+              onClick={() => onEdit(todo._id, todo.title)}
+              className="nes-btn is-warning"
+              style={{ marginRight: "5px" }}
             >
-              {todo.title}
-            </span>
-            <button onClick={() => onEdit(todo._id, todo.title)}>
               <svg
                 width="24"
                 height="24"
@@ -46,7 +68,10 @@ const TodoList = ({ todos = [], onDelete, onToggle, onEdit }) => {
                 </g>
               </svg>
             </button>
-            <button onClick={() => onDelete(todo._id)}>
+            <button
+              onClick={() => onDelete(todo._id)}
+              className="nes-btn is-error"
+            >
               <svg
                 width="24"
                 height="24"
@@ -103,10 +128,10 @@ const TodoList = ({ todos = [], onDelete, onToggle, onEdit }) => {
                 </g>
               </svg>
             </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };
 

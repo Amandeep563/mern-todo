@@ -67,15 +67,18 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Todo App 📝</h1>
-      <TodoForm onAdd={handleAdd} />
-      <TodoList
-        todos={todos}
-        onDelete={handleDelete}
-        onToggle={handleToggle}
-        onEdit={handleEdit}
-      />
+    <div className="app-container">
+      <h1 className="nes-text is-primary">Todo App 📝</h1>
+
+      <div className="todo-container">
+        <TodoForm onAdd={handleAdd} />
+        <TodoList
+          todos={todos}
+          onDelete={handleDelete}
+          onToggle={handleToggle}
+          onEdit={handleEdit}
+        />
+      </div>
     </div>
   );
 }
